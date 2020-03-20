@@ -1,6 +1,6 @@
 {
   "name": "@feizheng/next-local-forage",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "LocalForage for next.",
   "homepage": "https://github.com/afeiship/next-local-forage",
   "author": {

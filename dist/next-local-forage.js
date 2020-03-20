@@ -2,8 +2,8 @@
  * name: @feizheng/next-local-forage
  * description: LocalForage for next.
  * url: https://github.com/afeiship/next-local-forage
- * version: 1.0.0
- * date: 2020-03-20 17:28:49
+ * version: 1.0.1
+ * date: 2020-03-20 17:38:16
  * license: MIT
  */
 
@@ -20,7 +20,7 @@
       },
       config: function(inOptions) {
         nx.mix(this.options, inOptions);
-        localforage.config(this.options);
+        this.store.config(this.options);
       },
       destroy: function() {
         return localforage.createInstance(this.options);

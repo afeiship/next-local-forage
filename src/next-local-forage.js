@@ -11,7 +11,7 @@
       },
       config: function(inOptions) {
         nx.mix(this.options, inOptions);
-        localforage.config(this.options);
+        this.store.config(this.options);
       },
       destroy: function() {
         return localforage.createInstance(this.options);
