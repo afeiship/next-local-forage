@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>localforage</title>
+  <script src="/localforage/dist/localforage.js"></script>
+  <script src="/@feizheng/next-js-core2/dist/next-js-core2.js"></script>
+  <script src="/next-local-forage.js"></script>
+</head>
+
+<body>
+
+  <script>
+    localforage.config({ name: 'nxdb', storeName: 'kvs' })
+    localforage.setItem('key1', 'value1').then(res => {
+      console.log('res:', res);
+    })
+  </script>
+
+</body>
+
+</html>
