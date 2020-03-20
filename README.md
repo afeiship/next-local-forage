@@ -7,22 +7,20 @@ npm install -S @feizheng/next-local-forage
 ```
 
 ## apis
-| api    | params | description   |
-| ------ | ------ | ------------- |
-| get    | -      | desc balabala |
-| gets   | -      | desc balabala |
-| set    | -      | desc balabala |
-| sets   | -      | desc balabala |
-| del    | -      | desc balabala |
-| dels   | -      | desc balabala |
-| clear  | -      | desc balabala |
-| config | -      | desc balabala |
+| api    | params | description             |
+| ------ | ------ | ----------------------- |
+| get    | -      | Get item data.          |
+| gets   | -      | Get items.              |
+| set    | -      | Set value.              |
+| sets   | -      | Set values.             |
+| del    | -      | Delete a value by key.  |
+| dels   | -      | Deleta multiple values. |
+| clear  | -      | Clear the store.        |
+| config | -      | Config the store.       |
 
 ## usage
 ```js
 import NxLocalForage from '@feizheng/next-local-forage';
-
-const store = new NxLocalForage()
 ```
 
 ## resources
