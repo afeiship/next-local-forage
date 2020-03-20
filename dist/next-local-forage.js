@@ -3,7 +3,7 @@
  * description: LocalForage for next.
  * url: https://github.com/afeiship/next-local-forage
  * version: 1.0.0
- * date: 2020-03-20 17:23:11
+ * date: 2020-03-20 17:28:49
  * license: MIT
  */
 
@@ -15,13 +15,18 @@
   var NxLocalForage = nx.declare('nx.LocalForage', {
     methods: {
       init: function(inOptions) {
-        this.config(inOptions);
+        this.options = inOptions;
+        this.store = localforage.createInstance(this.options);
       },
       config: function(inOptions) {
-        localforage.config(inOptions);
+        nx.mix(this.options, inOptions);
+        localforage.config(this.options);
+      },
+      destroy: function() {
+        return localforage.createInstance(this.options);
       },
       set: function(inKey, inValue) {
-        return localforage.setItem(inKey, inValue);
+        return this.store.setItem(inKey, inValue);
       },
       sets: function(inObject) {
         var promises = [];
@@ -35,7 +40,7 @@
         return Promise.all(promises);
       },
       get: function(inKey) {
-        return localforage.getItem(inKey);
+        return this.store.getItem(inKey);
       },
       gets: function() {
         var self = this;
@@ -60,7 +65,7 @@
         });
       },
       del: function(inKey) {
-        return localforage.removeItem(inKey);
+        return this.store.removeItem(inKey);
       },
       dels: function(inKeys) {
         var promises = inKeys.map(function(key) {
@@ -69,10 +74,10 @@
         return Promise.all(promises);
       },
       clear: function() {
-        return localforage.clear();
+        return this.store.clear();
       },
       keys: function() {
-        return localforage.keys();
+        return this.store.keys();
       }
     }
   });
