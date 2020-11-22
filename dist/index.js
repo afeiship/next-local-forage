@@ -3,7 +3,7 @@
  * description: LocalForage for next.
  * homepage: https://github.com/afeiship/next-local-forage
  * version: 1.0.0
- * date: 2020-11-22 16:10:19
+ * date: 2020-11-22 16:11:19
  * license: MIT
  */
 
