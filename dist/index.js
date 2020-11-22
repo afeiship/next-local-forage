@@ -1,60 +1,60 @@
 /*!
- * name: @feizheng/next-local-forage
+ * name: @jswork/next-local-forage
  * description: LocalForage for next.
- * url: https://github.com/afeiship/next-local-forage
- * version: 1.0.1
- * date: 2020-03-20 17:38:16
+ * homepage: https://github.com/afeiship/next-local-forage
+ * version: 1.0.0
+ * date: 2020-11-22 16:10:19
  * license: MIT
  */
 
-(function() {
+(function () {
   var global = global || this || window || Function('return this')();
-  var nx = global.nx || require('@feizheng/next-js-core2');
+  var nx = global.nx || require('@jswork/next');
   var localforage = global.localforage || require('localforage');
 
   var NxLocalForage = nx.declare('nx.LocalForage', {
     methods: {
-      init: function(inOptions) {
+      init: function (inOptions) {
         this.options = inOptions;
         this.store = localforage.createInstance(this.options);
       },
-      config: function(inOptions) {
+      config: function (inOptions) {
         nx.mix(this.options, inOptions);
         this.store.config(this.options);
       },
-      destroy: function() {
+      destroy: function () {
         return localforage.createInstance(this.options);
       },
-      set: function(inKey, inValue) {
+      set: function (inKey, inValue) {
         return this.store.setItem(inKey, inValue);
       },
-      sets: function(inObject) {
+      sets: function (inObject) {
         var promises = [];
         nx.forIn(
           inObject,
-          function(key, value) {
+          function (key, value) {
             promises.push(this.set(key, value));
           },
           this
         );
         return Promise.all(promises);
       },
-      get: function(inKey) {
+      get: function (inKey) {
         return this.store.getItem(inKey);
       },
-      gets: function() {
+      gets: function () {
         var self = this;
-        return new Promise(function(resolve, reject) {
-          self.keys().then(function(keys) {
+        return new Promise(function (resolve, reject) {
+          self.keys().then(function (keys) {
             var reslves = [];
             var rejects = [];
-            keys.map(function(key) {
+            keys.map(function (key) {
               self
                 .get(key)
-                .then(function(res) {
+                .then(function (res) {
                   reslves.push(res);
                 })
-                .catch(function(err) {
+                .catch(function (err) {
                   rejects(err);
                 });
             });
@@ -64,19 +64,19 @@
           });
         });
       },
-      del: function(inKey) {
+      del: function (inKey) {
         return this.store.removeItem(inKey);
       },
-      dels: function(inKeys) {
-        var promises = inKeys.map(function(key) {
+      dels: function (inKeys) {
+        var promises = inKeys.map(function (key) {
           return this.del(key);
         }, this);
         return Promise.all(promises);
       },
-      clear: function() {
+      clear: function () {
         return this.store.clear();
       },
-      keys: function() {
+      keys: function () {
         return this.store.keys();
       }
     }
@@ -86,5 +86,3 @@
     module.exports = NxLocalForage;
   }
 })();
-
-//# sourceMappingURL=next-local-forage.js.map
